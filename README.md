@@ -115,6 +115,15 @@ Fix the code to return the sum: `return a + b;`
 
 **wait for students to catch up**
 
+## Introduce test.todo() and it.todo()
+
+As we write one test, ideas for other tests come to mind we can write placeholders for those tests.
+
+```js
+// remember to leave out the function
+it.todo('should return 0 when called with no arguments'); // show the terminal output for todo tests
+```
+
 ## Introduce AAA
 
 Explain how thinking about our test in the context of `Arrange > Act > Assert` can help when writing tests. An example:

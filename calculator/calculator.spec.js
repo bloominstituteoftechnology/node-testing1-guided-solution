@@ -12,6 +12,8 @@ describe('calculator.js', () => {
       expect(add(2, 3)).toBe(5); // helps reveal the bug
     });
 
+    // it.todo('should return 0 when called with no arguments');
+
     // it('should return 0 when called with no arguments', () => {
     //   // arrange
     //   const expected = 0;
