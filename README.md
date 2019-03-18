@@ -59,7 +59,7 @@ We haven't written any tests yet, we'll do that next.
 
 ```js
 // this test is useful to confirm the tooling is working
-it('runs the tests', () => {
+test('runs the tests', () => {
   // explain jest globals, it and test (show the docs for globals)
   expect(true).toBe(true); // explain assertions and matchers
 });
@@ -87,7 +87,7 @@ describe('calculator.js', () => {
 
   // note that we  can nest describes
   describe('add()', () => {
-    // other tests
+    // introduce the it() global as an alternative for the test() global
     it('should return the sum of numbers passed', () => {
       expect(add(2, 2)).toBe(4); // could be a false positive
     });

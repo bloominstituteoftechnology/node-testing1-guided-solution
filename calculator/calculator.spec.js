@@ -1,7 +1,7 @@
 const { add } = require('./calculator.js');
 
 describe('calculator.js', () => {
-  it('runs the tests', () => {
+  test('runs the tests', () => {
     expect(true).toBe(true);
   });
 
