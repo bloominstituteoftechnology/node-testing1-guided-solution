@@ -30,7 +30,7 @@ Open TK and go through the content, emphasis on:
 - what `refactoring` and `regressions` are.
 - type of automated tests.
 
-**time for a break? Take 5 minutes\***
+**time for a break? Take 5 minutes**
 
 Introduce the [guided project](https://github.com/LambdaSchool/webtesting-i-guided) and make sure all students have it forked and cloned.
 
