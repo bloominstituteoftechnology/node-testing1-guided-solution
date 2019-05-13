@@ -11,11 +11,22 @@ In this module we will cover the basics of automated testing and use `jest` to w
 
 Please follow along as the instructor uses _Test Driven Development (TDD)_ to implement the `add()` feature of a simple `calculator`.
 
-## Starter Code
+## How to Contribute
 
-The [Starter Code is here](https://github.com/LambdaSchool/webtesting-i-guided). Ask students to fork it so they can do commits to their fork as they follow along.
+- clone the [starter code](https://github.com/LambdaSchool/webtesting-i-guided).
+- create a solution branch: `git checkout -b solution`.
+- add this repository as a remote: `git remote add solution https://github.com/LambdaSchool/webtesting-i-guided-solution`
+- pull from this repository's `master` branch into the `solution` branch in your local folder `git pull solution master:solution --force`.
 
-Fork the starter code yourself if you want to demo making frequent commits.
+A this point you should have a `master` branch pointing to the student's repository and a `solution` branch with the latest changes added to the solution repository.
+
+When making changes to the `solution` branch, commit the changes and type `git push solution solution:master` to push them to this repository.
+
+When making changes to the `master` branch, commit the changes and use `git push origin master` to push them to the student's repository.
+
+## Introduce the Module Challenge
+
+Take time to explain what is expected from the [module challenge](https://github.com/LambdaSchool/webtesting-i-challenge), and provide hints about what to test.
 
 ## Introduce the Module Challenge
 
