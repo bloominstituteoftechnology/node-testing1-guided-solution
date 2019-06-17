@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/LambdaSchool/webtesting-i-guided#readme",
   "devDependencies": {
-    "jest": "^24.5.0"
+    "jest": "^24.8.0"
   }
 }
