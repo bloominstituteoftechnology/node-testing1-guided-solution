@@ -4,7 +4,7 @@
   "description": "Web Testing I Guided Project",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch"
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/LambdaSchool/webtesting-i-guided/issues"
   },
-  "homepage": "https://github.com/LambdaSchool/webtesting-i-guided#readme",
-  "devDependencies": {
-    "jest": "^25.1.0"
-  }
+  "homepage": "https://github.com/LambdaSchool/webtesting-i-guided#readme"
 }
