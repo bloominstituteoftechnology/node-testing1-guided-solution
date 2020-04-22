@@ -1,6 +1,9 @@
 # Mac Files
 .DS_Store
 
+# Allow students to use Yarn if they choose withoug breaking deployment to Heroku
+package-lock.json
+
 # Logs
 logs
 *.log
