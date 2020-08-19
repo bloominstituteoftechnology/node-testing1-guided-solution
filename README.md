@@ -28,10 +28,6 @@ When making changes to the `master` branch, commit the changes and use `git push
 
 Take time to explain what is expected from the [module challenge](https://github.com/LambdaSchool/webtesting-i-challenge), and provide hints about what to test.
 
-## Introduce the Module Challenge
-
-Take time to explain what is expected from the [module challenge](https://github.com/LambdaSchool/webtesting-i-challenge), and provide hints about what to test.
-
 ## Introduce Testing
 
 Open TK and go through the content, emphasis on:
