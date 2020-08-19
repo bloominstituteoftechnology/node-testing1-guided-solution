@@ -46,7 +46,7 @@ Introduce the [guided project](https://github.com/LambdaSchool/webtesting-i-guid
 - introduce `jest`, show the [docs](https://jestjs.io/docs/en/getting-started.html)
 - add `jest` as a dev dependency.
 - add test script: `jest --watch`, explain `--watch` flag.
-- type `yarn test` to start the test runner. Explain that `jest` uses `git` to know if the JavaScript files have changed in order to run the tests.
+- type `npm test` to start the test runner. Explain that `jest` uses `git` to know if the JavaScript files have changed in order to run the tests.
 - how does `jest` find tests to run?
   - add `__tests__` folder with an `index.js` file inside. Note that `jest` looks for tests inside it, explain why. Note the message explaining that a `suite` (a file) must have test or it will fail the test run.
   - add an `index.test.js` to root. Explain why `jest` tries to run tests from this file.
