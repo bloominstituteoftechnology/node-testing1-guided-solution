@@ -14,19 +14,20 @@ Students can reset their code to the instructor's latest push by using the "ketc
 
 Open Canvas and go through the content, emphasis on:
 
-- what is automated testing.
-- why should we use automated testing.
-- what `refactoring` and `regressions` are.
-- type of automated tests.
+- What is automated testing.
+- Why should we use automated testing.
+- What `refactoring` and `regressions` are.
+- Type of automated tests.
 
 ## Add Jest
 
-- introduce `jest`, show the [docs](https://jestjs.io/docs/en/getting-started.html)
-- add `jest` as a dev dependency.
-- add test script: `jest --watchAll --verbose`, explain flags.
-- add config file: `npx jest --init`, the defaults are fine.
-- type `npm test` to start the test runner. Explain that `jest` uses `git` to know if the JavaScript files have changed in order to run the tests.
-- how does `jest` find tests to run?
+- Introduce `jest`, show the [docs](https://jestjs.io/docs/en/getting-started.html)
+- Add `jest` and `@types/jest` as dev dependencies.
+- Add config file: `npx jest --init`, the defaults are fine.
+- Fix test script: `jest --watchAll --verbose`, explain flags.
+- Run `npm test` to start the test runner.
+- Explain that `jest` uses `git` to know if the JavaScript files have changed in order to run the tests.
+- How does `jest` find tests to run?
   - add `__tests__` folder with an `index.js` file inside. Note that `jest` looks for tests inside it.
   - note the message explaining that a `suite` (a file) must have test or it will fail the test run.
   - add an `index.test.js` to root. Explain why `jest` tries to run tests from this file.
@@ -36,19 +37,15 @@ Optionally add `eslint` to the project using `npx eslint --init` and show how to
 
 We will write tests only inside `./car/car.spec.js`, so go ahead and remove the `__tests__` folder, `index.test.js` and `index.spec.js` as they are not needed and will only cause noise in the terminal. **Make sure students know that you manually removed them.**
 
-**wait for students to catch up**
+## Add First Tests
 
-We haven't written any tests yet, we'll do that next.
-
-## Add First Test
-
-- inside `./car/car.spec.js`:
+- Inside `./car/car.spec.js`:
 
   ```js
   describe('Intro to unit testing', () => {
     // This test is useful to confirm the tooling is working
     // Explain jest globals, it and test (show the docs for globals)
-    it('works', () => { // THIS is the test
+    it('works', () => { // THIS is a test
       expect(2 + 2).toBe(4) // Assertion (comparing actual vs. expected)
     })
     test('toBe vs. toEqual', () => { // THIS is another test (empty tests are false positives)
@@ -58,21 +55,19 @@ We haven't written any tests yet, we'll do that next.
   })
   ```
 
-**wait for students to catch up**
-
 - Time to start implementing the Car class, but we'll build it using the `TDD workflow`.
 
   ```js
   describe('Car class', () => {})
   ```
 
-## Introduce TDD
+## Introduce TDD and the red-green-refactor cycle
 
-- find an [image that depicts the TDD workflow](https://centricconsulting.com/wp-content/uploads/2018/07/TDD1.jpg), and show it as you explain how TDD works.
+- Find an [image that depicts the TDD workflow](https://centricconsulting.com/wp-content/uploads/2018/07/TDD1.jpg), and show it as you explain how TDD works.
 
 ## Test the Car
 
-- add the first test for the Car class. It should break.
+- Add the first test for the Car class. It should break:
 
   ```js
     it('TDD starts with a failing test', () => {
@@ -80,17 +75,16 @@ We haven't written any tests yet, we'll do that next.
     })
   ```
 
-- pass the test exporting an empty object from car.js.
+- Pass the test exporting an empty object from car.js:
 
   ```js
   // car.js
   module.exports = {}
-
   // car.spec.js
   const Car = require('./car') 
   ```
 
-- add another assertion. It should fail.
+- Add another assertion. It should fail:
 
   ```js
   it('makes instances of Cars', () => {
@@ -99,16 +93,14 @@ We haven't written any tests yet, we'll do that next.
   })
   ```
 
-- make the test pass.
+- Make the test pass:
 
   ```js
   class Car {}
   module.exports = Car
   ```
 
-**wait for students to catch up**
-
-## Introduce test.todo() and it.todo()
+## Introduce test.todo
 
 - As we write one test, ideas for other tests come to mind we can write placeholders for those tests.
 
@@ -132,75 +124,160 @@ We haven't written any tests yet, we'll do that next.
   })
   ```
 
-- make the test pass.
+- Make the test pass:
 
   ```js
   class Car {
-    constructor(make) {
+    constructor(make) { this.make = make }
+  }
+  ```
+
+## Use beforeEach to avoid repetitive setup inside tests
+
+- Explain that each test must have clean state (a fresh car).
+- Tests should never rely on state left by previous tests.
+- Every test must be able to pass in isolation.
+
+  ```js
+  describe('Car class', () => {
+    let prius
+    beforeEach(() => {
+      prius = new Car('toyota', 'prius')
+    })
+    // tests
+  }
+  ```
+
+## Explore different kinds of matchers
+
+- Show some of the matchers provided by `jest` in the [docs](https://jestjs.io/docs/en/expect).
+- Show VSCode's intellisense for matchers provided by `@types/jest` library.
+- Allow students to do as much of the work as possible.
+- Use TDD and demo the red-green-refactor cycle.
+
+  ```js
+  // car.spec.js
+  it('cars have a make property', () => {
+    expect(prius.make).toBe('toyota') // Strict equality
+    expect(prius).toHaveProperty('make') // Checking only existance of a property
+    expect(prius).toHaveProperty('make', 'toyota') // Property _and_ its value
+  })
+  it('cars have a model property', () => {
+    expect(prius.model).toBe('prius');
+  })
+  it('cars have the make and model passed into Car', () => {
+    // BRITTLE TEST, will fail as soon as Car evolves to have more props:
+    expect(prius).toEqual(
+      { make: 'toyota', model: 'prius' }
+    )
+    // MUCH BETTER, won't break as Car gets more features and props:
+    expect(prius).toMatchObject(
+      { make: 'toyota', model: 'prius' }
+    )
+  })
+  it('new cars have odometer set at 0', () => {
+    expect(prius.odometer).toBe(0)
+  })
+
+  // car.js
+  class Car {
+    constructor(make, model) {
       this.make = make
+      this.model = model
+      this.odometer = 0
     }
   }
   ```
 
-**wait for students to catch up**
+## Testing functions
 
-## You Do (estimated 5 mins to complete)
+- Testing that a method exists:
 
-Write a test for: _should return the value passed when only one argument is provided_.
+  ```js
+  // test.spec.js
+  it('has a drive method', () => {
+    // Let students try to come up with ideas to test this
+    expect(prius.drive).toBeDefined()
+    expect(prius.drive).toBeTruthy()
+    expect(prius.drive).toBeInstanceOf(Function)
+    expect(prius.drive).toBe(Car.prototype.drive) // Strictly the same thing!
+  })
+  // car.js
+  class Car {
+    constructor(make, model) { /* etc */ }
+    drive() {}
+  }
+  ```
 
-One possible solution:
+- Testing the return value of a function:
 
-```js
-it('should return the passed in value when only one argument provided', () => {
-  expect(add(2)).toBe(1); // we do this to make sure the test can fail
-  expect(add(-1)).toBe(-1);
-});
-```
+  ```js
+  // test.spec.js
+  it('drive returns the driven distance', () => {
+    // Let students attempt this
+    // Multiple assertions a good idea
+    expect(prius.drive(5)).toBe(5)
+    expect(prius.drive(0)).toBe(0)
+    expect(prius.drive(10)).toBe(10)
+  })
+  // car.js
+  class Car {
+    constructor(make, model) { /* etc */ }
+    // Let students attempt this
+    drive(distance) { return distance }
+  }
+  ```
 
-Fix the test to make it pass: `expect(add(2)).toBe(2);`
+- Testing the side effects of a function:
 
-**wait for students to catch up**
+  ```js
+  // test.spec.js
+  it('drive increases the odometer by the driven distance', () => {
+    // Let students attempt this
+    // Tests should avoid testing things that are tested already:
+    // expect(prius.drive(5)).toBe(5) // Not necessary here!
+    prius.drive(5)
+    expect(prius.odometer).toBe(5)
+    prius.drive(6)
+    expect(prius.odometer).toBe(11)
+    prius.drive(9)
+    expect(prius.odometer).toBe(20)
+  })
+  // car.js
+  class Car {
+    constructor(make, model) { /* etc */ }
+    // Let students attempt this
+    drive(distance) { this.odometer += distance; return distance }
+  }
+  ```
 
-**take a break if needed**
+- Now it should be obvious why we need a fresh car for each test.
+- We don't want miles in the odometer for the next test.
+- Adding new features to a function while keeping existing functionality:
 
-New feature: _add support for any number of arguments_.
+  ```js
+  // test.spec.js
+  it('drive supports comma-separated legs', () => {
+    // Let students attempt this
+    // Implement functionality _after_ writing failing test (TDD)
+    // Reward yourself for getting tests passing by refactoring
+    expect(prius.drive(1, 2, 3)).toBe(6)
+    expect(prius.drive(4, 5, 6)).toBe(15)
+    expect(prius.odometer).toBe(21)
+  })
+  // car.js
+  class Car {
+    constructor(make, model) { /* etc */ }
+    // Let students attempt this
+    drive(...legs) {
+      const total = legs.reduce((acc, leg) => acc + leg)
+      this.odometer += total
+      return total
+    }
+  }
+  ```
 
-```js
-it('should handle any number of arguments separated by comma', () => {
-  expect(add(1, 2, 3)).toBe(6);
-  expect(add(1, 2, 3, 5)).toBe(11);
-});
+## Testing async functions (if time allows)
 
-// calculator.js
-function add(args) {
-  return Array.from(arguments).reduce((sum, value) => {
-    return sum + value;
-  }, 0);
-}
-```
-
-**wait for students to catch up**
-
-New feature: _add support for accepting an array of numbers_.
-
-```js
-it('should handle an array of numbers', () => {
-  expect(add([1, 2, 3])).toBe(6);
-  expect(add([1, 2, 3, 5])).toBe(11);
-});
-
-// calculator.js
-function add(args) {
-  const values = Array.isArray(args) ? args : Array.from(arguments);
-
-  return values.reduce((sum, value) => {
-    return sum + value;
-  }, 0);
-}
-```
-
-Explain how this is similar to most agile environments. New features are requested and we need to implement them without breaking existing functionality. Having a test suite provides **confidence**.
-
-**wait for students to catch up**
-
-Open the [jest documentation for expect](https://jestjs.io/docs/en/expect) and show some of the matchers provided by `jest`.
+- See car.spec.js
+- Demo async/await and then/catch
