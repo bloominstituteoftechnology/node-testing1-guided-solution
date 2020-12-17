@@ -84,7 +84,7 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
   module.exports = {}
   ```
 
-- Add another assertion. It should fail:
+- Add a second test. It should fail:
 
   ```js
   it('makes instances of Cars', () => {
