@@ -5,12 +5,14 @@ const Car = require('./car') // Bring this _after_ failing `expect(Car).toBeDefi
 
 // 'describe' blocks organize tests and can be nested
 describe('Intro to unit testing', () => {
+  // This test is useful to confirm the tooling is working
+  // Explain jest globals, it and test (show the docs for globals)
   it('works', () => { // THIS is the test
     expect(2 + 2).toBe(4) // Assertion (comparing actual vs. expected)
   })
-  test('toBe vs. toEqual', () => { // THIS is another test
+  test('toBe vs. toEqual', () => { // THIS is another test (empty tests are false positives)
     expect({}).not.toBe({}) // Use `toEqual` when comparing composite shapes
-    expect({}).toEqual({}) // Same test can have multiple **related** assertions
+    expect({}).toEqual({}) // One test can have multiple **related** assertions
   })
 })
 // Unit tests test the smallest unit of a program: a class or a function
@@ -89,7 +91,7 @@ describe('Car class', () => {
     // Let students attempt this
     // Implement functionality _after_ writing failing test (TDD)
     // Reward yourself for getting tests passing by refactoring
-    // Red-Green-Refactor cycle
+    // Discuss Red-Green-Refactor cycle
     expect(prius.drive(1, 2, 3)).toBe(6)
     expect(prius.drive(4, 5, 6)).toBe(15)
     expect(prius.odometer).toBe(21)
@@ -112,5 +114,5 @@ describe('Car class', () => {
       .then(drivenDistance => {
         expect(drivenDistance).toBe(5)
       })
-  }, 50) // Prudent not to allow jest the default 5 seconds for promise to settle
+  }, 50) // Prudent not to allow jest the default 5 seconds before it times out
 })
