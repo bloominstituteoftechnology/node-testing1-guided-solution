@@ -78,10 +78,10 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
 - Pass the test exporting an empty object from car.js:
 
   ```js
-  // car.js
-  module.exports = {}
   // car.spec.js
   const Car = require('./car') 
+  // car.js
+  module.exports = {}
   ```
 
 - Add another assertion. It should fail:
@@ -96,6 +96,7 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
 - Make the test pass:
 
   ```js
+  // car.js
   class Car {}
   module.exports = Car
   ```
