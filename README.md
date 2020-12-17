@@ -119,7 +119,7 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
     // arrange
     const expected = 'toyota'
     // act
-    const actual = Car('toyota', 'prius').make
+    const actual = new Car('toyota', 'prius').make
     // assert
     expect(actual).toBe(expected)
   })
