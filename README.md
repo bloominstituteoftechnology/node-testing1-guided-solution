@@ -88,7 +88,7 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
 
   ```js
   it('makes instances of Cars', () => {
-    const prius = new Car()
+    const prius = new Car('toyota', 'prius')
     expect(prius).toBeInstanceOf(Car)
   })
   ```
@@ -119,7 +119,7 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
     // arrange
     const expected = 'toyota'
     // act
-    const actual = Car('toyota').make
+    const actual = Car('toyota', 'prius').make
     // assert
     expect(actual).toBe(expected)
   })
