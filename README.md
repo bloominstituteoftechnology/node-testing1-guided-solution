@@ -79,7 +79,7 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
 
   ```js
   // car.spec.js
-  const Car = require('./car') 
+  const Car = require('./car')
   // car.js
   module.exports = {}
   ```
@@ -235,7 +235,7 @@ We will write tests only inside `./car/car.spec.js`, so go ahead and remove the 
   // test.spec.js
   it('drive increases the odometer by the driven distance', () => {
     // Let students attempt this
-    // Tests should avoid testing things that are tested already:
+    // Tests should avoid testing things that are tested elsewhere:
     // expect(prius.drive(5)).toBe(5) // Not necessary here!
     prius.drive(5)
     expect(prius.odometer).toBe(5)
