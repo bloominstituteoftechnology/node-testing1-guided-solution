@@ -10,8 +10,8 @@
     "url": "git+https://github.com/LambdaSchool/node-testing1-guided-solution.git"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.24",
-    "eslint": "^7.31.0",
-    "jest": "^27.0.6"
+    "@types/jest": "^27.0.1",
+    "eslint": "^7.32.0",
+    "jest": "^27.2.0"
   }
 }
