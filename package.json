@@ -2,7 +2,7 @@
   "name": "node-testing1-guided-solution",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest --watchAll --verbose",
+    "test": "jest --verbose",
     "ketchup": "git fetch && git reset --hard origin/lecture"
   },
   "repository": {

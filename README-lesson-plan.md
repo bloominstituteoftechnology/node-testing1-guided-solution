@@ -24,7 +24,7 @@ Open Canvas and go through the content, emphasis on:
 - Introduce `jest`, show the [docs](https://jestjs.io/docs/en/getting-started.html)
 - Add `jest` and `@types/jest` as dev dependencies.
 - Add config file: `npx jest --init`, the defaults are fine.
-- Fix test script: `jest --watchAll --verbose`, explain flags.
+- Fix test script: `jest --verbose`, explain flags.
 - Run `npm test` to start the test runner.
 - Explain that `jest` uses `git` to know if the JavaScript files have changed in order to run the tests.
 - How does `jest` find tests to run?
