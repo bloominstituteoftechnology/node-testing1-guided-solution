@@ -32,7 +32,7 @@ describe('comparing values', () => {
     function foo() { return {} } // comes from a different file
     expect(foo()).toEqual({}) // the actual comes from invoking the function
     // if objects are truly the same then toBe works just fine
-    const a = 1
+    const a = {}
     const b = a
     expect(b).toBe(a)
   })
