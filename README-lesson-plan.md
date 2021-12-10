@@ -4,7 +4,7 @@ In this module we will cover the basics of automated testing and use `jest` to w
 
 ## Introduce Project
 
-Introduce the [guided project](https://github.com/LambdaSchool/node-testing1-guided) and make sure all students have it cloned, **not forked**.
+Introduce the [guided project](https://github.com/bloominstituteoftechnology/node-testing1-guided) and make sure all students have it cloned, **not forked**.
 
 The instructor works on a "lecture" branch and pushes commits regularly (use of a script for this is recommended).
 
