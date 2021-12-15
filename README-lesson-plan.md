@@ -26,7 +26,6 @@ Open Canvas and go through the content, emphasis on:
 - Add config file: `npx jest --init`, the defaults are fine.
 - Fix test script: `jest --verbose`, explain flags.
 - Run `npm test` to start the test runner.
-- Explain that `jest` uses `git` to know if the JavaScript files have changed in order to run the tests.
 - How does `jest` find tests to run?
   - add `__tests__` folder with an `index.js` file inside. Note that `jest` looks for tests inside it.
   - note the message explaining that a `suite` (a file) must have test or it will fail the test run.
