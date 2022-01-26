@@ -10,8 +10,8 @@
     "url": "git+https://github.com/bloominstituteoftechnology/node-testing1-guided-solution.git"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.3",
-    "eslint": "^8.4.1",
-    "jest": "^27.4.4"
+    "@types/jest": "^27.4.0",
+    "eslint": "^8.7.0",
+    "jest": "^27.4.7"
   }
 }
